@@ -14,7 +14,7 @@
     {
         "title": "naranja",
         "price": "333",
-        "thumnail": "ccc",
+        "thumnail": "ddd",
         "id": 3
     }
 ]
