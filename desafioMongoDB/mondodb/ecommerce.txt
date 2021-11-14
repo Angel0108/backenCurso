@@ -1,0 +1,64 @@
+use ecommerce
+
+db.productos.insertMany([
+    {title: 'manzana', price: 100, thumbnail: 'url'},
+    {title: 'naranja', price: 500, thumbnail: 'url'},
+    {title: 'pera', price: 1000, thumbnail: 'url'},
+    {title: 'banana', price: 1500, thumbnail: 'url'},
+    {title: 'kiwi', price: 2000, thumbnail: 'url'},
+    {title: 'papa', price: 2500, thumbnail: 'url'},
+    {title: 'cebolla', price: 3000, thumbnail: 'url'},
+    {title: 'mandarina', price: 3500, thumbnail: 'url'},
+    {title: 'lechuga', price: 4000, thumbnail: 'url'},
+    {title: 'frutilla', price: 5000, thumbnail: 'url'}
+])
+
+db.productos.find()
+
+db.mensajes.insertMany([
+     {email: 'algo@otro.com', mensaje: 'Hola.', fecha: '27/10/2021'},
+     {email: 'algo@otromas.com', mensaje: 'Hola, cómo va?', fecha: '27/10/2021'},
+     {email: 'algo@otro.com', mensaje: 'Todo bien, cómo va el proyecto?', fecha: '27/10/2021'},
+     {email: 'algo@otromas.com', mensaje: 'Excelente, avanzando.', fecha: '27/10/2021'},
+     {email: 'algo@otro.com', mensaje: 'Bien. Y la lógica que hablamos el otro día?', fecha: '27/10/2021'},
+     {email: 'algo@otromas.com', mensaje: 'Ah la encaré por el lado funcional.', fecha: '27/10/2021'},
+     {email: 'algo@otro.com', mensaje: 'Con qué consecuencias?', fecha: '27/10/2021'},
+     {email: 'algo@otromas.com', mensaje: 'Mayor impacto en la interfaz, mayores filtros.', fecha: '27/10/2021'},
+     {email: 'algo@otro.com', mensaje: 'Se pudo dejar escrito?', fecha: '27/10/2021'},
+     {email: 'algo@otromas.com', mensaje: 'Se están armando las historias.', fecha: '27/10/2021'},
+     {email: 'algo@otro.com', mensaje: 'Cómo venís con eso?', fecha: '27/10/2021'},
+     {email: 'algo@otromas.com', mensaje: 'Bien, se mantiene lo estimado.', fecha: '27/10/2021'}
+ ])
+
+db.mensajes.find()
+
+db.productos.estimatedDocumentCount()
+
+db.mensajes.estimatedDocumentCount()
+
+db.productos.insertOne({title: 'cereza', price: 4500, thumbnail: 'url'})
+
+db.productos.find({title: 'frutilla'})
+
+db.productos.find({price: {$lt:1000 }})
+
+db.productos.find({price: {$lt:3000, $gt:1000 }})
+
+db.productos.find({price: {$gt:3000 }})
+
+db.productos.find().sort({price: 1}).skip(2).limit(1)
+
+db.productos.updateMany({}, {$set: {stock:100}}, true)
+
+db.productos.updateMany({price: {$gt: 4000}}, {$set: {stock:0}}, true)
+
+db.productos.deleteMany({price: {$lt: 1000}})
+
+
+db.createUser({
+    user: "pepe",
+    pwd: "'asd456' ",
+    roles: [
+         { role: "read", db: "ecommerce"}
+    ]
+})
