@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios</title>
+</head>
+
+<body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"
+    integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg=="
+    crossorigin="anonymous"></script>
+    <span></span>
+    <h1>Productos</h1>
+    <ul id="productos"></ul>
+    <table id="table" border="1">Carrito</table>
+    <script>
+        function createNode(element) {
+            return document.createElement(element);
+        }
+
+        function append(parent, el) {
+            return parent.appendChild(el);
+        }
+
+        const ul = document.getElementById('productos');
+
+        fetch('/api/productos')
+        .then(response => response.json())
+        .then(json => {
+        
+        json.forEach(element => {
+            let li = createNode('li');
+            let img = createNode('img');
+            let span = createNode('span');
+            let span1 = createNode('span1');
+            let but = document.createElement('button')
+            but.value = 'Actualizar'
+            but.textContent = 'Actualizar'
+
+            let but2 = document.createElement('button')
+            but2.value = 'Eliminar'
+            but2.textContent = 'Eliminar'
+            but2.onclick = borrarProducto(element.id)
+
+            img.src = element.foto;
+            span.innerHTML = `${element.nombre} | ${element.descripcion} |`;
+            span1.innerHTML = `${element.codigo} | ${element.precio} |`;
+            append(li, span);
+            append(li, span1);
+            append(li, img);
+            append(li, but);
+            append(li, but2);
+            append(ul, li);
+        });
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+
+        const tbl = document.getElementById('table');
+        tbl.style.width = '100%';
+
+        fetch('/api/carrito/1/productos')
+        .then(response => response.json())
+        .then(json => {
+            var html = "";
+            html += json[0].id + " "+ json[0].nombre + " "+
+                json[0].descripcion + " " +
+                json[0].codigo + " " +
+                json[0].precio + "";
+
+            tbl.append(html)
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+
+        function agregarProducto(id) {
+            const url = "/api/carrito/" + id + "/productos"
+            fetch(url);
+        }
+
+        function borrarProducto(id) {
+            const url = "/api/productos/" + id
+            fetch(url);
+        }
+
+        function actualizarProducto(producto) {
+            const url = "/api/productos"
+            fetch(url)
+            .then(Request => producto.json());
+        }
+            
+    </script>
+
+    <h2>Agregar Producto al Carrito</h2>
+    <form action="/api/carrito/{id}/productos" method="POST">
+        Id: <input type="text" name="id">
+        <button>Agregar</button>
+    </form>
+
+    <h2>Ingrese Producto</h2>
+    <form action="/api/productos" method="POST">
+        Nombre: <input type="text" name="nombre">
+        Descripción: <input type="text" name="descripcion">
+        Código: <input type="text" name="codigo">
+        Foto: <input type="text" name="foto">
+        Precio: <input type="text" name="precio">
+        Stock: <input type="text" name="stock">
+        <button>Enviar</button>
+    </form>
+
+</body>
+
+</html>

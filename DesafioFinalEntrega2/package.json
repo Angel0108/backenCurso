@@ -1,0 +1,19 @@
+{
+  "type": "module",
+  "name": "1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "firebase-admin": "^10.0.0",
+    "mongoose": "^6.0.13",
+    "node-fetch": "^3.0.0"
+  }
+}
