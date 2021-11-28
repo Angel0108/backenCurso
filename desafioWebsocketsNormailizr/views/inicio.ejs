@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi plantilla de Ingreso de Datos en EJS</title>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src=https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js></script>
+</head>
+
+<body>
+    <%- include('./formulario') %>
+    <%- include('./historial') %>
+    <p id="prods"></p>
+
+
+    <h2 style="color:blue;">Centro de Mensajes</h2>
+    <label><b>Email</b></label>
+    <input id=inputEmail type="text"><br>
+    <label><b>Nombre</b></label>
+    <input id=inputNombre type="text"><br>
+    <label><b>Apellido</b></label>
+    <input id=inputApellido type="text"><br>
+    <label><b>Edad</b></label>
+    <input id=inputEdad type="text"><br>
+    <label><b>Alias</b></label>
+    <input id=inputalias type="text"><br>
+    <label><b>Avatar</b></label>
+    <input id=inputAvatar type="text"><br>
+
+    <label><b>Mensaje</b></label>
+    <input id=inputMsj type="text"><br>
+    <button id="btnMsj">Enviar!</button>
+
+    <p id="msj"></p>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
