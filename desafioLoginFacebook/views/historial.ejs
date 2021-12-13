@@ -1,0 +1,27 @@
+<h2 style="color:crimson;">Historial</h2>
+
+<% const hayProductos = productos.length > 0; %>
+<% if(hayProductos){ %>
+<table>
+    <tr style="color: blueviolet;">
+        <th>Title</th>
+        <th>Price</th>
+        <th>Thumbsnail</th>
+    </tr>
+    <% for (const producto of productos) {%>
+    <tr>
+        <td>
+            <%=producto.title%>
+        </td>
+        <td>
+            <%=producto.price%>
+        </td>
+        <td>
+            <%=producto.thumnail%>
+        </td>
+    </tr>
+    <%};%>
+</table>
+<% } else { %>
+<h3>No hay productos</h3>
+<% } %>

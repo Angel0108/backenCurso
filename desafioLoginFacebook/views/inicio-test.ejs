@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi plantilla de Ingreso de Datos en EJS</title>
+    
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <%- include('./formulario') %>
+    <%- include('./historial') %>
+    <p id="prods"></p>
+
+
+    <h2 style="color:blue;">Centro de Mensajes</h2>
+    <input id=inputMsj type="text">
+    <button id="btnMsj">Enviar!</button>
+
+    <p id="msj"></p>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
